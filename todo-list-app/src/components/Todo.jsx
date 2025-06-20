@@ -37,6 +37,16 @@ export const Todo = () => {
     }
     }, []);
 
+    const handleDelete = (value) =>
+    {
+      const updatedTasks = task.filter((taskItem) => taskItem !== value);
+      setTask(updatedTasks);
+    };
+
+    const handleClearButton = () => {
+      setTask([]);
+    };
+
   return (
     <section className="todo-container">
       <header>
@@ -70,12 +80,16 @@ export const Todo = () => {
               <span>{curTask}</span>
               <button className="check-btn">           
                 <MdCheck /> </button>
-              <button className="delete-btn">
+              <button className="delete-btn" 
+              onClick={() => handleDelete(curTask)}>
                 <MdDeleteForever />
               </button>
             </li>
           ))}
         </ul>
+      </section>
+      <section>
+        <button className="clear-btn" onClick={handleClearButton}>Clear All</button>
       </section>
     </section>
   );
